@@ -7,8 +7,19 @@ const messages = [
 ];
 
 export default function App() {
+  return (
+    <div>
+      <Steps />
+      <Steps />
+    </div>
+  );
+}
+
+function Steps() {
   const [step, setStep] = useState(1);
   const [isOpen, setIsOpen] = useState(true);
+
+  // const [test, setTest] = useState({ name: "Jonas" });
 
   function handlePrevious() {
     if (step > 1) setStep((s) => s - 1);
@@ -17,14 +28,20 @@ export default function App() {
   function handleNext() {
     if (step < 3) {
       setStep((s) => s + 1);
+      // setStep((s) => s + 1);
     }
+
+    // BAD PRACTICE
+    // test.name = "Fred";
+    // setTest({ name: "Fred" });
   }
 
   return (
     <div>
-      <button onClick={() => setIsOpen((is) => !is)} className="close">
+      <button className="close" onClick={() => setIsOpen((is) => !is)}>
         &times;
       </button>
+
       {isOpen && (
         <div className="steps">
           <div className="numbers">
@@ -35,18 +52,19 @@ export default function App() {
 
           <p className="message">
             Step {step}: {messages[step - 1]}
+            {/* {test.name} */}
           </p>
 
           <div className="buttons">
             <button
-              onClick={handlePrevious}
               style={{ backgroundColor: "#7950f2", color: "#fff" }}
+              onClick={handlePrevious}
             >
               Previous
             </button>
             <button
-              onClick={handleNext}
               style={{ backgroundColor: "#7950f2", color: "#fff" }}
+              onClick={handleNext}
             >
               Next
             </button>
